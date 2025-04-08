@@ -1,58 +1,70 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
-import Header from "./components/Header/Header";
-import Banner from "./components/Banner/Banner";
-import ImpactSection from "./components/ourTeams/ImpactSection";
-import CareerGuide from "./components/Career/CareerGuide";
-import Category from "./components/Category/Category";
-import Events from "./components/Events/EventSection";
-import NewsSection from "./components/NewsS/NewsSection";
-import Communication from "./components/communication/Communication";
-import Footer from "./components/NavBar/Footer";
-import NewEducation from "./components/NewEducation/NewEducation";
-import PopularEducation from './components/PopularEducation/PopularEducation';
-import FeaturedEducation from './components/FeaturedEducation/FeaturedEducation';
-import HeaderBar from "./components/Header/HeaderBar";
 
+// Home bileşenleri
+import Header from "./pages/HomePage/Header/Header";
+import HeaderBar from "./pages/HomePage/Header/HeaderBar";
+import Banner from "./pages/HomePage/Banner/Banner";
+import Category from "./pages/HomePage/Category/Category";
+import NewEducation from "./pages/HomePage/NewEducation/NewEducation";
+import PopularEducation from "./pages/HomePage/PopularEducation/PopularEducation";
+import FeaturedEducation from "./pages/HomePage/FeaturedEducation/FeaturedEducation";
+import Events from "./pages/HomePage/Events/EventSection";
+import ImpactSection from "./pages/HomePage/ourTeams/ImpactSection";
+import CareerGuide from "./pages/HomePage/Career/CareerGuide";
+import NewsSection from "./pages/HomePage/NewsS/NewsSection";
+import Communication from "./pages/HomePage/communication/Communication";
+import Footer from "./pages/HomePage/NavBar/Footer";
 
+// Yan bileşenler
+import ScrollIndicator from "./pages/HomePage/SideNavBar/ScrollIndicator";
+import SocialMediaIcons from "./pages/HomePage/SideNavBar/SocialMediaIcons";
+import ScrollToTopButton from "./pages/HomePage/SideNavBar/ScrollToTopButton";
+import SupportButton from "./pages/HomePage/SideNavBar/SupportButton";
 
+// Sayfalar
+import AboutUs from "./pages/AboutUs/AboutUs";
 
-// Yan bileşenler (Side Components)
-import ScrollIndicator from "./components/SideNavBar/ScrollIndicator";
-import SocialMediaIcons from "./components/SideNavBar/SocialMediaIcons";
-import ScrollToTopButton from "./components/SideNavBar/ScrollToTopButton";
-import SupportButton from "./components/SideNavBar/SupportButton";
-
-// Global stil
+// CSS
 import "./styles/global.css";
 
+// Home bileşenlerini tek bir bileşen altında topla
+const Home = () => {
+  return (
+    <>
+      <Header />
+      <HeaderBar />
+      <Banner />
+      <Category />
+      <NewEducation />
+      <PopularEducation />
+      <FeaturedEducation />
+      <Events />
+      <ImpactSection />
+      <CareerGuide />
+      <NewsSection />
+      <Communication />
+      <Footer />
+      <ScrollIndicator />
+      <SocialMediaIcons />
+      <ScrollToTopButton />
+      <SupportButton />
+    </>
+  );
+};
 
 function App() {
-    return (
-        <ThemeProvider>
-
-
-            <Header />
-            <HeaderBar />
-            <Banner />
-            <Category />
-
-            <NewEducation />
-            <PopularEducation />
-            <FeaturedEducation />
-
-            <Events />
-            <ImpactSection />
-            <CareerGuide />
-
-            <NewsSection />
-
-            <Communication />
-            <Footer />
-
-
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
 }
 
 export default App;
